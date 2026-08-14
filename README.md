@@ -25,24 +25,42 @@ The project focuses on understanding how a real-world SIEM deployment can be str
 ### Architecture
 
 ```text
-                                    ┌─────────────────────┐
-                                    │   Wazuh Dashboard   │
-                                    │ Visualization / SOC │
-                                    └──────────┬──────────┘
-                                               │
-                                               │
-                                    ┌──────────▼──────────┐
-                                    │    Wazuh Server     │
-                                    │ Log Analysis / Rules│
-                                    │  Alert Generation   │
-                                    └──────────┬──────────┘
-                                               │
-                                               │
-                                    ┌──────────▼──────────┐
-                                    │    Wazuh Indexer    │
-                                    │ Storage / Searching │
-                                    │   Security Events   │
-                                    └─────────────────────┘
+                         WAZUH DISTRIBUTED LAB
+
+                              ┌────────────────────┐
+                              │  Wazuh Dashboard   │
+                              │                    │
+                              │ Visualization / SOC│
+                              │    Investigation   │
+                              └─────────┬──────────┘
+                                        │
+                                        ▼
+                              ┌────────────────────┐
+                              │    Wazuh Server    │
+                              │                    │
+                              │  Log Analysis      │
+                              │  Detection / Rules │
+                              │  Alert Generation  │
+                              └─────────┬──────────┘
+                                        │
+                                        ▼
+                              ┌────────────────────┐
+                              │   Wazuh Indexer    │
+                              │                    │
+                              │   Event Storage    │
+                              │     Searching      │
+                              └─────────┬──────────┘
+                                        │
+                                        │ Security Events
+              ┌─────────────────────────┼─────────────────────────┐
+              │                         │                         │
+              ▼                         ▼                         ▼
+    ┌────────────────────┐    ┌────────────────────┐    ┌────────────────────┐
+    │    Linux Agents    │    │   Windows Agents   │    │    macOS Agents    │
+    │                    │    │                    │    │                    │
+    │ Ubuntu / Debian    │    │    Windows 10/11   │    │       macOS        │
+    │    Kali Linux      │    │                    │    │                    │
+    └────────────────────┘    └────────────────────┘    └────────────────────┘
 ```
 
 The lab includes deployment, configuration, validation, troubleshooting, and technical documentation of the different components.
